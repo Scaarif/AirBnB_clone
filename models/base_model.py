@@ -26,7 +26,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
             storage.new(self)
 
     def __str__(self):
@@ -43,7 +43,7 @@ class BaseModel:
         """Returns a dict containing all keys/values of __dict__ of the
         instance.
         In addition a key __class__ is added with class name as value"""
-        obj_dict = self.__dict__
+        obj_dict = self.__dict__.copy()
         obj_dict["__class__"] = "BaseModel"
         obj_dict["created_at"] = self.created_at.isoformat()
         obj_dict["updated_at"] = self.updated_at.isoformat()

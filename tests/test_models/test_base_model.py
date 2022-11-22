@@ -6,6 +6,7 @@ import unittest
 from datetime import datetime
 import models
 from models.base_model import BaseModel
+from time import sleep
 
 
 class TestBaseModel(unittest.TestCase):
@@ -64,25 +65,39 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(type(a.to_dict()), dict)
 
     def test_if_key_class_is_in_dict(self):
-        """
-        Checks if the key __class__ is in o.to_dict
-        """
+        """Checks if the key __class__ is in o.to_dict"""
         a = BaseModel()
         self.assertIn('__class__', a.to_dict())
 
     def test_if_created_at_is_datetime_object(self):
-        """
-        Checks if created_at is a datetime obj
-        """
+        """Checks if created_at is a datetime obj """
         a = BaseModel()
         self.assertTrue(type(a.created_at), datetime)
 
     def test_if_updated_at_is_datetime_object(self):
-        """
-        Checks if updated_at is a datetime obj
-        """
+        """Checks if updated_at is a datetime obj"""
         a = BaseModel()
         self.assertTrue(type(a.updated_at), datetime)
+
+    def test_if_created_at_and_updated_at_is_same_initially(self):
+        """Tests if created_at & updated_at attr have same values
+        initially"""
+        a = BaseModel()
+        self.assertEqual(a.created_at, a.updated_at)
+
+    def test_two_objects_created_at(self):
+        """Compares the created_at time of two class instances"""
+        a = BaseModel()
+        sleep(0.2)
+        b = BaseModel()
+        self.assertLess(a.created_at, b.created_at)
+
+    def test_if_save_method_updates_updated_at_attr(self):
+        """Checks if calling save method updated the updated_at attr"""
+        a = BaseModel()
+        a.save()
+        self.assertNotEqual(a.created_at, a.updated_at)
+        self.assertGreater(a.updated_at.microsecond, a.created_at.microsecond)
 
 
 if __name__ == "__main__":
