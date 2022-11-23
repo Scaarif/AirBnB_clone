@@ -17,7 +17,7 @@ class FileStorage:
         """
         Returns the dict __objects
         """
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """
@@ -28,14 +28,17 @@ class FileStorage:
 
         """
         key = f"BaseModel.{obj.id}"
-        FileStorage.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj
 
     def save(self):
         """
         Serializes __objects to the JSON file (path: __file_path)
         """
-        with open(FileStorage.__file_path, "w") as fd:
-            json.dump(FileStorage.__objects, fd, indent=4)
+        with open(self.__file_path, "w") as fd:
+            dict_store = {}
+            for k, v in self.__objects.items():
+                dict_store[k] = v.to_dict()
+            json.dump(dict_store, fd, indent=4)
 
     def reload(self):
         """
@@ -44,7 +47,9 @@ class FileStorage:
         If the file doesn't exist, no exception should be raised
         """
         try:
-            with open(FileStorage.__file_path) as fd:
-                FileStorage.__objects = json.load(fd)
+            with open(self.__file_path) as fd:
+                for obj in json.load(fd).values():
+                    self.new(BaseModel(**obj))
+
         except Exception:
             return
