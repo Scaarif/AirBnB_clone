@@ -9,6 +9,9 @@ import models
 import argparse
 from models.base_model import BaseModel
 
+CLASSES = [
+        "BaseModel"
+        ]
 
 parser = argparse.ArgumentParser()
 args = str(parser.parse_args())
@@ -43,16 +46,16 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """Creates a new instance of BaseModel
+        """Creates a new instance of a class
         Saves it to the JSON file and prints the id
         """
         argv = parser(args)
         if len(argv) == 0:
             print("** class name missing **")
-        elif argv[0] != "BaseModel":
+        elif argv[0] not in CLASSES:
             print("** class doesn't exist **")
         else:
-            model = BaseModel()
+            model = eval(argv[0])()
             print(model.id)
             model.save()
 
@@ -62,13 +65,13 @@ class HBNBCommand(cmd.Cmd):
         argv = parser(args)
         if len(argv) == 0:
             print("** class name is missing **")
-        elif argv[0] != "BaseModel":
+        elif argv[0] not in CLASSES:
             print("** class doesn't exist **")
         elif len(argv) == 1:
             print("** instance id missing **")
         else:
             all_dict = self.storage.all()
-            key = f"BaseModel.{argv[1]}"
+            key = f"{argv[0]}.{argv[1]}"
             if all_dict[key]:
                 print(str(all_dict[key]))
 
@@ -78,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
 
         argv = parser(args)
 
-        if len(argv) == 0 or argv[0] == "BaseModel":
+        if len(argv) == 0 or argv[0] in CLASSES:
             all_dicts = self.storage.all()
             all_objects = []
             for obj in all_dicts.values():
