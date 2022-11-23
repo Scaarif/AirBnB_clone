@@ -10,8 +10,8 @@ import argparse
 from models.base_model import BaseModel
 
 CLASSES = [
-        "BaseModel"
-        ]
+    "BaseModel"
+]
 
 parser = argparse.ArgumentParser()
 args = str(parser.parse_args())
@@ -76,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
                 print(str(all_dict[key]))
             else:
                 print("** no instance found **")
-    
+
     def do_destroy(self, args):
         """Deletes an instance based on the class name & id and save the change
         """
@@ -111,6 +111,37 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             print("** class doesn't exist **")
+
+    def do_update(self, args):
+        """Updates an instance based on the class and id by adding attribute
+        """
+        argv = parser(args)
+
+        if len(argv) == 0:
+            print("** class name missing **")
+        elif argv[0] not in CLASSES:
+            print("** class doesn't exist **")
+        elif len(argv) == 1:
+            print("** instance id missing **")
+        elif len(argv) == 2:
+            all_dict = self.storage.all()
+            key = f"{argv[0]}.{argv[1]}"
+            if all_dict.get(key) is None:
+                print("** no instance found **")
+            else:
+                print("** attribute name missing **")
+        elif len(argv) == 3:
+            print("** value missing **")
+        else:
+            all_dict = self.storage.all()
+            key = f"{argv[0]}.{argv[1]}"
+            obj = all_dict.get(key)
+            if argv[2] in type(obj).__dict__:
+                attr_type = type(obj.__class__.__dict__[argv[2]])
+                setattr(obj, argv[2], attr_type(argv[3]))
+            else:
+                setattr(obj, argv[2], argv[3])
+            self.storage.save()
 
 
 if __name__ == "__main__":
