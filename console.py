@@ -72,8 +72,29 @@ class HBNBCommand(cmd.Cmd):
         else:
             all_dict = self.storage.all()
             key = f"{argv[0]}.{argv[1]}"
-            if all_dict[key]:
+            if all_dict.get(key):
                 print(str(all_dict[key]))
+            else:
+                print("** no instance found **")
+    
+    def do_destroy(self, args):
+        """Deletes an instance based on the class name & id and save the change
+        """
+        argv = parser(args)
+        if len(argv) == 0:
+            print("** class name missing **")
+        elif argv[0] not in CLASSES:
+            print("** class doesn't exist **")
+        elif len(argv) == 1:
+            print("** instance id missing **")
+        else:
+            all_dict = self.storage.all()
+            key = f"{argv[0]}.{argv[1]}"
+            if all_dict.get(key):
+                del all_dict[key]
+                self.storage.save()
+            else:
+                print("** no instance found **")
 
     def do_all(self, args):
         """Prints all str representation of all instances
