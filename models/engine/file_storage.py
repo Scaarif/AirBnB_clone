@@ -27,7 +27,7 @@ class FileStorage:
             obj(object): Newly created objected to be added to __objects dict
 
         """
-        key = f"BaseModel.{obj.id}"
+        key = f"{obj.__class__.__name__}.{obj.id}"
         self.__objects[key] = obj
 
     def save(self):
@@ -38,7 +38,7 @@ class FileStorage:
             dict_store = {}
             for k, v in self.__objects.items():
                 dict_store[k] = v.to_dict()
-            json.dump(dict_store, fd, indent=4)
+            json.dump(dict_store, fd)
 
     def reload(self):
         """
@@ -49,7 +49,7 @@ class FileStorage:
         try:
             with open(self.__file_path) as fd:
                 for obj in json.load(fd).values():
-                    self.new(BaseModel(**obj))
+                    self.new(eval(obj["__class__"])(**obj))
 
         except Exception:
             return

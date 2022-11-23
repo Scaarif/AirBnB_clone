@@ -31,7 +31,7 @@ class BaseModel:
 
     def __str__(self):
         """Returns the formatted str representation of an obj"""
-        return f"[BaseModel] ({self.id}) {self.__dict__}"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Updates the public instance attribute updated_at"""
@@ -44,7 +44,7 @@ class BaseModel:
         instance.
         In addition a key __class__ is added with class name as value"""
         obj_dict = self.__dict__.copy()
-        obj_dict["__class__"] = "BaseModel"
+        obj_dict["__class__"] = self.__class__.__name__
         obj_dict["created_at"] = self.created_at.isoformat()
         obj_dict["updated_at"] = self.updated_at.isoformat()
 
