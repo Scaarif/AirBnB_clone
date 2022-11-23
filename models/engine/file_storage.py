@@ -4,6 +4,7 @@ File storage module
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -38,7 +39,7 @@ class FileStorage:
             dict_store = {}
             for k, v in self.__objects.items():
                 dict_store[k] = v.to_dict()
-            json.dump(dict_store, fd)
+            json.dump(dict_store, fd, indent = 4)
 
     def reload(self):
         """
