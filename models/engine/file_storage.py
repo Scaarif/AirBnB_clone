@@ -21,33 +21,23 @@ class FileStorage:
     # define public instance methods
     def all(self):
         """ returns the dictionary __objects """
-        # recreate the actual instances?
-        '''actual_objs = {}
-        for key, val in (FileStorage.__objects).items():
-            # val is a instance_dict representation
-            actual_objs[key] = str(BaseModel(**val))
-        return actual_objs'''
         return FileStorage.__objects
 
     def new(self, obj):
         """ sets in __objects the obj with key <obj class name>.id """
-        # assuming obj is an instance dictionary rep
+        # assuming obj is an instance
         key = obj.__class__.__name__ + '.' + obj.id
-        # key = obj['__class__'] + '.' + obj['id']
         FileStorage.__objects[key] = obj  # append obj to __objects
 
     def save(self):
         """ serializes __objects to the JSON file(path: __file_path) """
         # dump __objects into file __file_path
         filename = FileStorage.__file_path
-        # ===========
         objs_dict = {}
         with open(filename, mode='w', encoding='utf-8') as f:
             for key, obj in (FileStorage.__objects).items():
                 objs_dict[key] = obj.to_dict()
             json.dump(objs_dict, f)
-            # =================
-            # json.dump(FileStorage.__objects, f)
 
     def reload(self):
         """ deserializes the JSON file to __objects (only if
@@ -76,14 +66,3 @@ class FileStorage:
                         self.new(Review(**obj))
         except FileNotFoundError:
             pass
-
-    # ===== personal addition (helpers) ==============
-    def update(self, obj_key, value):
-        """ updates the object with key == obj_key in __objects """
-        # assuming obj is an instance dictionary rep
-        # check that obj_key exits in __objects
-        for key in (FileStorage.__objects).keys():
-            if key == obj_key:
-                # update obj"s dict_representation (to include all attributes)
-                FileStorage.__objects[key] = value  # update objects[key] value
-                # print('__objects updated_key: ', FileStorage.__objects[key])

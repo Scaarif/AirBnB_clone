@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
         attr_value = args[3]
         if len(args) > 4:
             value = ' '.join(args[3:])
-            print(value)
+            # print(value)
             if value[0] == '"':
                 values = value.split('"')
                 attr_value = values[1]
