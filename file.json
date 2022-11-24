@@ -1,50 +1,14 @@
 {
-    "BaseModel.17d50821-1ae7-4caf-af74-7d9b46fab9ed": {
-        "id": "17d50821-1ae7-4caf-af74-7d9b46fab9ed",
-        "created_at": "2022-11-24T09:34:02.655130",
-        "updated_at": "2022-11-24T09:34:02.656024",
+    "BaseModel.78b9a744-3d47-4cd7-bcc2-2babb462fb4e": {
+        "id": "78b9a744-3d47-4cd7-bcc2-2babb462fb4e",
+        "created_at": "2022-11-24T10:34:50.606873",
+        "updated_at": "2022-11-24T10:34:50.606873",
         "__class__": "BaseModel"
     },
-    "BaseModel.f57f0d72-8ff1-4cbb-b53e-c7f2fbe49daa": {
-        "id": "f57f0d72-8ff1-4cbb-b53e-c7f2fbe49daa",
-        "created_at": "2022-11-24T09:34:44.784138",
-        "updated_at": "2022-11-24T09:34:44.784163",
-        "__class__": "BaseModel"
-    },
-    "BaseModel.13411ae7-5b05-454f-a5e8-bcbef27a26f9": {
-        "id": "13411ae7-5b05-454f-a5e8-bcbef27a26f9",
-        "created_at": "2022-11-24T09:34:49.657923",
-        "updated_at": "2022-11-24T09:34:49.657942",
-        "__class__": "BaseModel"
-    },
-    "User.23d44d8b-d146-4294-8111-3e9acabff3c5": {
-        "id": "23d44d8b-d146-4294-8111-3e9acabff3c5",
-        "created_at": "2022-11-24T09:34:59.568950",
-        "updated_at": "2022-11-24T09:34:59.568972",
+    "User.5a1e0729-1a87-4628-bcff-63016efb82d5": {
+        "id": "5a1e0729-1a87-4628-bcff-63016efb82d5",
+        "created_at": "2022-11-24T10:34:54.350554",
+        "updated_at": "2022-11-24T10:34:54.350554",
         "__class__": "User"
-    },
-    "User.61ae6586-f7b4-40de-bb9a-b7873aa5b78c": {
-        "id": "61ae6586-f7b4-40de-bb9a-b7873aa5b78c",
-        "created_at": "2022-11-24T09:34:59.571655",
-        "updated_at": "2022-11-24T09:34:59.571693",
-        "__class__": "User"
-    },
-    "User.793bdcaf-143f-4e2f-a503-04c47debaae6": {
-        "id": "793bdcaf-143f-4e2f-a503-04c47debaae6",
-        "created_at": "2022-11-24T09:35:03.695810",
-        "updated_at": "2022-11-24T09:35:03.695832",
-        "__class__": "User"
-    },
-    "User.4f63eb2e-d72d-4838-b59c-98b402b686bc": {
-        "id": "4f63eb2e-d72d-4838-b59c-98b402b686bc",
-        "created_at": "2022-11-24T09:35:03.697804",
-        "updated_at": "2022-11-24T09:35:03.697821",
-        "__class__": "User"
-    },
-    "Amenity.b4fedb9a-55a5-45af-8951-032f3ac6981c": {
-        "id": "b4fedb9a-55a5-45af-8951-032f3ac6981c",
-        "created_at": "2022-11-24T09:59:59.418241",
-        "updated_at": "2022-11-24T09:59:59.418542",
-        "__class__": "Amenity"
     }
 }

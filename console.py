@@ -70,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             model = eval(argv[0])()
             print(model.id)
-            model.save()
+            self.storage.save()
 
     def do_show(self, args):
         """Prints str repr of an instance based on the class name and id
