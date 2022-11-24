@@ -115,13 +115,18 @@ class HBNBCommand(cmd.Cmd):
 
         argv = parser(args)
 
-        if len(argv) == 0 or argv[0] in CLASSES:
-            all_dicts = self.storage.all()
-            all_objects = []
-            for obj in all_dicts.values():
-                all_objects.append(str(obj))
+        all_dicts = self.storage.all()
+        all_objects = []
+        class_objects = []
+        for k, v in all_dicts.items():
+            all_objects.append(str(v))
+            if len(argv) != 0:
+                if argv[0] == v.__class__.__name__:
+                    class_objects.append(str(v))
+        if len(argv) == 0:
             print(all_objects)
-
+        elif argv[0] in CLASSES:
+            print(class_objects)
         else:
             print("** class doesn't exist **")
 
