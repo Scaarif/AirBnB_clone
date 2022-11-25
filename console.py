@@ -30,30 +30,31 @@ CLASSES = [
 
 # Gets the input string that will be passed to parser()
 parser = argparse.ArgumentParser()
-args = str(parser.parse_args())
+line = str(parser.parse_args())
 
 # ============== Helper Functions ===============
 
-# Parses input string and stores it in arg vector
 
-
-def parser(args):
+def parser(line):
     """Parses arguments parsed to our HBNBCommands
     Returns an array of strings
+
+    Args:
+        line(str): String passed to cmd
     """
 
     # The regex returns a list of all space-demarcated substrings
-    return re.findall(r"(\b[^\s]+\b)", args)
-
-# Helper function to verify a given id
+    return re.findall(r"(\b[^\s]+\b)", line)
 
 
 def verify_id(id, argv):
     """Verifies if given id exists and returns True when it does
+
     Args:
         id(str): id to be verified
         argv(list): list of commands passed to cmd
     """
+
     all_dict = storage.all()
     key = f"{argv[0]}.{argv[1]}"
     if all_dict.get(key):
@@ -66,7 +67,6 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
-    # Overides onecmd
     def precmd(self, line):
         """Overwrites the onecmd. This helps us to rearrange
         the arguments in the format of class.cmd() to fit into
@@ -124,13 +124,13 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def do_create(self, args):
+    def do_create(self, line):
         """Creates a new instance of a class
         Saves it to the JSON file and prints the id
         """
         # argv is a vector containing parsed input string
         # Input string involves only args passed to function
-        argv = parser(args)
+        argv = parser(line)
 
         if len(argv) == 0:
             print("** class name missing **")
@@ -141,10 +141,10 @@ class HBNBCommand(cmd.Cmd):
             print(model.id)
             storage.save()
 
-    def do_show(self, args):
+    def do_show(self, line):
         """Prints str repr of an instance based on the class name and id
         """
-        argv = parser(args)
+        argv = parser(line)
         if len(argv) == 0:
             print("** class name is missing **")
         elif argv[0] not in CLASSES:
@@ -161,10 +161,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_destroy(self, args):
+    def do_destroy(self, line):
         """Deletes an instance based on the class name & id and save the change
         """
-        argv = parser(args)
+        argv = parser(line)
         if len(argv) == 0:
             print("** class name missing **")
         elif argv[0] not in CLASSES:
@@ -182,11 +182,11 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_all(self, args):
+    def do_all(self, line):
         """Prints all str representation of all instances
         """
 
-        argv = parser(args)
+        argv = parser(line)
 
         all_dicts = storage.all()
         all_objects = []
@@ -209,12 +209,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-    def do_update(self, args):
+    def do_update(self, line):
         """Updates an instance based on the class and id by adding attribute
         """
-        argv = parser(args)
-        flag = 0
-
+        argv = parser(line)
         if len(argv) == 0:
             print("** class name missing **")
         elif argv[0] not in CLASSES:
@@ -250,12 +248,12 @@ class HBNBCommand(cmd.Cmd):
                     setattr(obj, argv[2], argv[3])
 
                 # save the updated objects
-                storage.save()
+        storage.save()
 
-    def do_count(self, args):
+    def do_count(self, line):
         """Retrives the count of instances of a class
         """
-        argv = parser(args)
+        argv = parser(line)
         count_class = 0
         count_all = 0
         all_dict = storage.all()
@@ -274,7 +272,5 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
 
-# Exectutes module if executed as main
 if __name__ == "__main__":
-    # Creates a class and runs an infinite loop
     HBNBCommand().cmdloop()

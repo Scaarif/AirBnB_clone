@@ -1,9 +1,56 @@
 {
-    "User.8991730e-004b-414f-bd05-550592c5f222": {
-        "id": "8991730e-004b-414f-bd05-550592c5f222",
-        "created_at": "2022-11-25T10:57:31.572993",
-        "updated_at": "2022-11-25T10:57:31.572993",
-        "school": "FGCN",
+    "User.8e1fe3a5-d69b-409f-813b-db164faf5e76": {
+        "id": "8e1fe3a5-d69b-409f-813b-db164faf5e76",
+        "created_at": "2022-11-25T14:11:31.265499",
+        "updated_at": "2022-11-25T14:11:31.265499",
         "__class__": "User"
+    },
+    "User.20d062b5-da0f-4a90-8fec-ae8a168bc430": {
+        "id": "20d062b5-da0f-4a90-8fec-ae8a168bc430",
+        "created_at": "2022-11-25T14:11:32.811232",
+        "updated_at": "2022-11-25T14:11:32.811232",
+        "__class__": "User"
+    },
+    "User.bfb684f1-fda4-43d4-8516-228ba95aceb5": {
+        "id": "bfb684f1-fda4-43d4-8516-228ba95aceb5",
+        "created_at": "2022-11-25T14:11:33.968758",
+        "updated_at": "2022-11-25T14:11:33.968758",
+        "__class__": "User"
+    },
+    "User.43a21551-9084-4a62-a4bc-ad2d6bf3f975": {
+        "id": "43a21551-9084-4a62-a4bc-ad2d6bf3f975",
+        "created_at": "2022-11-25T14:11:34.992259",
+        "updated_at": "2022-11-25T14:11:34.992259",
+        "__class__": "User"
+    },
+    "BaseModel.44d4d33b-097d-4229-8c7e-32698e84f781": {
+        "id": "44d4d33b-097d-4229-8c7e-32698e84f781",
+        "created_at": "2022-11-25T14:12:14.577345",
+        "updated_at": "2022-11-25T14:12:14.577345",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.760c602d-73ed-43b6-ab77-33d22de263ec": {
+        "id": "760c602d-73ed-43b6-ab77-33d22de263ec",
+        "created_at": "2022-11-25T14:12:15.980352",
+        "updated_at": "2022-11-25T14:12:15.980352",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.c3fcedf2-8b17-41ca-b92a-5632d8a7bb1c": {
+        "id": "c3fcedf2-8b17-41ca-b92a-5632d8a7bb1c",
+        "created_at": "2022-11-25T14:12:17.096936",
+        "updated_at": "2022-11-25T14:12:17.096936",
+        "__class__": "BaseModel"
+    },
+    "Place.047b86c7-3bb4-4573-bea2-8c6fd4839aba": {
+        "id": "047b86c7-3bb4-4573-bea2-8c6fd4839aba",
+        "created_at": "2022-11-25T14:14:09.358385",
+        "updated_at": "2022-11-25T14:14:09.358385",
+        "__class__": "Place"
+    },
+    "Place.68eb689c-91d9-455d-9aa4-5e1ff1541fda": {
+        "id": "68eb689c-91d9-455d-9aa4-5e1ff1541fda",
+        "created_at": "2022-11-25T14:20:18.890134",
+        "updated_at": "2022-11-25T14:20:18.890134",
+        "__class__": "Place"
     }
 }
