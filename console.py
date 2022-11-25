@@ -76,13 +76,15 @@ class HBNBCommand(cmd.Cmd):
                     # the likes of User.update("id", "att", "attr_val")
                     args = args[1].strip(')')
                     print('multiple args args')
+                    if '{' in args:
+                        print('possible dict')
                     # format multi_args eg into id att "attr_val"
                     multi_args = []
                     for idx, arg in enumerate(args.split(',')):
                         if (idx < 2) or len((arg.strip(' ')).split(' ')) == 1:
                             multi_args.append((arg.strip(' ')).strip('"'))
                         else:
-                            multi_args.append(arg)  # as quoted string
+                            multi_args.append(arg)  # as quoted stringi
                     print(multi_args)
                     args = ' '.join(multi_args)
                 print('actual args: ', args)
@@ -95,6 +97,13 @@ class HBNBCommand(cmd.Cmd):
             line = ' '.join(reversed(cmd_strs))
             print(line)
         return cmd.Cmd.precmd(self, line)
+
+    # override default behavior if dict value
+    def postcmd(self, stop, line):
+        if stop:
+            return True
+        elif '{' in line:
+            print('postcmd: ', line)
 
     # ========= helper methods ===========
 
@@ -244,7 +253,12 @@ class HBNBCommand(cmd.Cmd):
         (& saves the change into the JSON file) """
         # check that class name & id are provided along with command
         if line:
+            # check for possible dictionary of values============
+            if '{' in line:
+                print('dict_of attributes: ', (line.split())[2:])
+            # ================================end_of_dict_handling=======
             args = line.split()
+            print('line split: ', args)
             # check that class exists
             if args[0] and args[0] not in self.classes:
                 print("** class doesn't exist **")
