@@ -349,6 +349,10 @@ class HBNBCommand(cmd.Cmd):
                     if len(args) > 3:
                         # extend object dict_rep
                         attr_value = self.get_value(args)
+                        if attr_value.isnumeric():
+                            attr_value = int(attr_value)
+                        elif attr_value[0].isnumeric() and '.' in attr_value:
+                            attr_value = float(attr_value)
                         setattr(str_rep, args[2], attr_value)
                         # reserialize __objects into file
                         str_rep.save()
