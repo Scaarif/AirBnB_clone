@@ -99,14 +99,6 @@ class HBNBCommand(cmd.Cmd):
             # print(line)
         return cmd.Cmd.precmd(self, line)
 
-    # override default behavior if dict value
-    def postcmd(self, stop, line):
-        if stop:
-            return True
-        elif '{' in line:
-            # print('postcmd: ', line)
-            pass
-
     # ========= helper methods ===========
 
     @staticmethod
