@@ -71,13 +71,14 @@ class HBNBCommand(cmd.Cmd):
                 if len(args[1].split(',')) == 1:
                     # the likes of User.show("id")
                     args = (args[1].strip(')')).strip('"')
-                    print('single arg args')
+                    # print('single arg args')
                 else:
                     # the likes of User.update("id", "att", "attr_val")
                     args = args[1].strip(')')
-                    print('multiple args args')
+                    # print('multiple args args')
                     if '{' in args:
-                        print('possible dict')
+                        # print('possible dict')
+                        pass
                     # format multi_args eg into id att "attr_val"
                     multi_args = []
                     for idx, arg in enumerate(args.split(',')):
@@ -85,9 +86,9 @@ class HBNBCommand(cmd.Cmd):
                             multi_args.append((arg.strip(' ')).strip('"'))
                         else:
                             multi_args.append(arg)  # as quoted stringi
-                    print(multi_args)
+                    # print(multi_args)
                     args = ' '.join(multi_args)
-                print('actual args: ', args)
+                # print('actual args: ', args)
                 cmd_strs = []
                 cmd_strs.append(args)
                 cmd_strs.append(cls)
@@ -95,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 cmd_strs[1] = cmd_strs[1].strip('()')
             line = ' '.join(reversed(cmd_strs))
-            print(line)
+            # print(line)
         return cmd.Cmd.precmd(self, line)
 
     # override default behavior if dict value
@@ -103,7 +104,8 @@ class HBNBCommand(cmd.Cmd):
         if stop:
             return True
         elif '{' in line:
-            print('postcmd: ', line)
+            # print('postcmd: ', line)
+            pass
 
     # ========= helper methods ===========
 
@@ -255,10 +257,11 @@ class HBNBCommand(cmd.Cmd):
         if line:
             # check for possible dictionary of values============
             if '{' in line:
-                print('dict_of attributes: ', (line.split())[2:])
+                # print('dict_of attributes: ', (line.split())[2:])
+                pass
             # ================================end_of_dict_handling=======
             args = line.split()
-            print('line split: ', args)
+            # print('line split: ', args)
             # check that class exists
             if args[0] and args[0] not in self.classes:
                 print("** class doesn't exist **")
