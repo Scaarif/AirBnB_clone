@@ -142,15 +142,15 @@ class HBNBCommand(cmd.Cmd):
         """ rebuilds arguments from a dictionary """
         # attrs is a str of attr_names and corresponding values
         attrs = attrs.strip('}')
-        print(attrs)
+        # print(attrs)
         list_ = attrs.split()
-        print(list_)
+        # print(list_)
         # rebuild args to order expected
         values = []
         attr_dict = {}
         for idx, attr in enumerate(list_):
             if ':' in attr:
-                print('attr_name: ', attr)
+                # print('attr_name: ', attr)
                 if idx != 0:
                     # assign prev attr_name, its value
                     attr_dict[name.strip("'")] = ' '.join(values)
@@ -161,7 +161,7 @@ class HBNBCommand(cmd.Cmd):
                 values.append(attr.strip('" ""'))
         # add last name: values pair
         attr_dict[name.strip("'")] = ' '.join(values)
-        print(attr_dict)
+        # print(attr_dict)
         return attr_dict
 
     # ========== end of helper functions ==============
@@ -283,15 +283,10 @@ class HBNBCommand(cmd.Cmd):
         # check that class name & id are provided along with command
         if line:
             args = line.split()
-            # check for possible dictionary of values============
+            dict_args = {}
             if '{' in line:
                 # pass to the function, the dictionary part
                 dict_args = self.handle_attributes_dict((line.split('{'))[1])
-                if dict_args:
-                    args[2] = list(dict_args.keys())[0]  # attr_name
-                    args[3] = list(dict_args.values())[0]  # attr_value
-                    print('attr-value pair: ', args[2], args[3])
-            # ================================end_of_dict_handling=======
             # check that class exists
             if args[0] and args[0] not in self.classes:
                 print("** class doesn't exist **")
@@ -303,35 +298,13 @@ class HBNBCommand(cmd.Cmd):
                     for obj, str_rep in objects.items():
                         if obj == this_key:
                             # object exists: update or add attribute
-                            if len(args) > 2:
-                                # check if attribute already exists
-                                for k, val in (str_rep.to_dict()).items():
-                                    if k == args[2]:
-                                        # attribute already exists
-                                        # check if attr_value provided
-                                        if len(args) > 3:
-                                            # attr_value provided, cast+update
-                                            attr_val = self.get_value(args)
-                                            attr_val = type(val)(attr_val)
-                                            setattr(str_rep, args[2], attr_val)
-                                            # reserialize objects into file
-                                            str_rep.save()
-                                        else:
-                                            print("** value missing **")
-                                        break  # from for loop
-                                else:
-                                    # attribute doesn't exist, add it
-                                    if len(args) > 3:
-                                        # extend object dict_rep
-                                        attr_value = self.get_value(args)
-                                        setattr(str_rep, args[2], attr_value)
-                                        # reserialize __objects into file
-                                        str_rep.save()
-                                    else:
-                                        print("** value missing **")
+                            # check if a dictionary of attributes' provided
+                            if dict_args:
+                                for k, v in dict_args.items():
+                                    self.update_attribute(args, str_rep, k, v)
                             else:
-                                # attribute_name missing
-                                print("** attribute name missing **")
+                                # just a single attribute-value pair to update
+                                self.update_attribute(args, str_rep)
                             break
                     else:
                         # objects exhausted before [this_obj] is found
@@ -354,6 +327,44 @@ class HBNBCommand(cmd.Cmd):
             # print count if class exists
             if objs != -1:
                 print("{}".format(len(objs) if len(objs) else 0))
+
+    def update_attribute(self, args, str_rep, *attr_args):
+        """ performs the update process on the basis of how many attributes
+        should be updated (how many times the updating happens per
+        cmdloop) """
+        # if attr_args is defined, comes in order(attr_name, attr_value)
+        if attr_args:
+            args[2], args[3] = attr_args[0], attr_args[1]
+        # make update (either way)
+        if len(args) > 2:
+            # check if attribute already exists
+            for k, val in (str_rep.to_dict()).items():
+                if k == args[2]:
+                    # attribute already exists
+                    # check if attr_value provided
+                    if len(args) > 3:
+                        # attr_value provided, cast+update
+                        attr_val = self.get_value(args)
+                        attr_val = type(val)(attr_val)
+                        setattr(str_rep, args[2], attr_val)
+                        # reserialize objects into file
+                        str_rep.save()
+                    else:
+                        print("** value missing **")
+                    break  # from for loop
+                else:
+                    # attribute doesn't exist, add it
+                    if len(args) > 3:
+                        # extend object dict_rep
+                        attr_value = self.get_value(args)
+                        setattr(str_rep, args[2], attr_value)
+                        # reserialize __objects into file
+                        str_rep.save()
+                    else:
+                        print("** value missing **")
+        else:
+            # attribute_name missing
+            print("** attribute name missing **")
 
 
 # run the script if executed as main
