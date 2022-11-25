@@ -137,6 +137,33 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return (-1)
 
+    @staticmethod
+    def handle_attributes_dict(attrs):
+        """ rebuilds arguments from a dictionary """
+        # attrs is a str of attr_names and corresponding values
+        attrs = attrs.strip('}')
+        print(attrs)
+        list_ = attrs.split()
+        print(list_)
+        # rebuild args to order expected
+        values = []
+        attr_dict = {}
+        for idx, attr in enumerate(list_):
+            if ':' in attr:
+                print('attr_name: ', attr)
+                if idx != 0:
+                    # assign prev attr_name, its value
+                    attr_dict[name.strip("'")] = ' '.join(values)
+                    # empty values to hold next attr's values
+                    values = []
+                name = attr.strip('"":')
+            else:
+                values.append(attr.strip('" ""'))
+        # add last name: values pair
+        attr_dict[name.strip("'")] = ' '.join(values)
+        print(attr_dict)
+        return attr_dict
+
     # ========== end of helper functions ==============
 
     # ++++ custom console commands ++++ #
@@ -255,13 +282,16 @@ class HBNBCommand(cmd.Cmd):
         (& saves the change into the JSON file) """
         # check that class name & id are provided along with command
         if line:
+            args = line.split()
             # check for possible dictionary of values============
             if '{' in line:
-                # print('dict_of attributes: ', (line.split())[2:])
-                pass
+                # pass to the function, the dictionary part
+                dict_args = self.handle_attributes_dict((line.split('{'))[1])
+                if dict_args:
+                    args[2] = list(dict_args.keys())[0]  # attr_name
+                    args[3] = list(dict_args.values())[0]  # attr_value
+                    print('attr-value pair: ', args[2], args[3])
             # ================================end_of_dict_handling=======
-            args = line.split()
-            # print('line split: ', args)
             # check that class exists
             if args[0] and args[0] not in self.classes:
                 print("** class doesn't exist **")
