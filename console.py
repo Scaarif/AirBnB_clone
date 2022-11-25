@@ -57,11 +57,43 @@ class HBNBCommand(cmd.Cmd):
 
     # override cmd.precmd - re-write line if in the form <class>.cmd
     def precmd(self, line):
-        for cls in self.classes:
-            if line.startswith(cls):
-                cmd_strs = line.split('.')
+        # for cls in self.classes:
+        if '.' in line:
+            # if line.startswith(cls):
+            cmd_strs = line.split('.')
+            # check if command has args as in show(id)
+            args = cmd_strs[1].split('(')
+            command = args[0]
+            cls = cmd_strs[0]
+            # print('command: ', command)
+            # print('args: ', args)
+            if len(args[1]):
+                if len(args[1].split(',')) == 1:
+                    # the likes of User.show("id")
+                    args = (args[1].strip(')')).strip('"')
+                    print('single arg args')
+                else:
+                    # the likes of User.update("id", "att", "attr_val")
+                    args = args[1].strip(')')
+                    print('multiple args args')
+                    # format multi_args eg into id att "attr_val"
+                    multi_args = []
+                    for idx, arg in enumerate(args.split(',')):
+                        if (idx < 2) or len((arg.strip(' ')).split(' ')) == 1:
+                            multi_args.append((arg.strip(' ')).strip('"'))
+                        else:
+                            multi_args.append(arg)  # as quoted string
+                    print(multi_args)
+                    args = ' '.join(multi_args)
+                print('actual args: ', args)
+                cmd_strs = []
+                cmd_strs.append(args)
+                cmd_strs.append(cls)
+                cmd_strs.append(command)
+            else:
                 cmd_strs[1] = cmd_strs[1].strip('()')
-                line = ' '.join(reversed(cmd_strs))
+            line = ' '.join(reversed(cmd_strs))
+            print(line)
         return cmd.Cmd.precmd(self, line)
 
     # ========= helper methods ===========
@@ -77,6 +109,22 @@ class HBNBCommand(cmd.Cmd):
                 values = value.split('"')
                 attr_value = values[1]
         return attr_value
+
+    def get_class_objects(self, line, objects):
+        """ returns a list of the objects in <line> class """
+        obj_list = []
+        for cls in self.classes:
+            if line == cls:
+                for obj, val in objects.items():
+                    cls_name = (obj.split('.'))[0]
+                    # if an object is of given class, print it
+                    if cls_name == line:
+                        obj_list.append(str(val))
+                return obj_list
+        else:
+            # some other class provided
+            print("** class doesn't exist **")
+            return (-1)
 
     # ========== end of helper functions ==============
 
@@ -174,24 +222,16 @@ class HBNBCommand(cmd.Cmd):
         # check if class_name is provided (for filter)
         # get all objects and only print out BaseModel instances
         objects = storage.all()
-        obj_list = []
         if line:
             # check the classname provided exists
-            for cls in self.classes:
-                if line == cls:
-                    for obj, val in objects.items():
-                        cls_name = (obj.split('.'))[0]
-                        # if an object is of given class, print it
-                        if cls_name == line:
-                            # obj_list.append(str(method(**val)))
-                            obj_list.append(str(val))
-                    print(obj_list)
-                    break
+            objs = self.get_class_objects(line, objects)
+            if objs == -1:
+                pass  # class doesn't exist
             else:
-                # some other class provided
-                print("** class doesn't exist **")
+                print(objs)
         else:
             # print all instances (no filter)
+            obj_list = []
             for obj, val in objects.items():
                 obj_list.append(str(val))
             print(obj_list)
@@ -255,6 +295,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             # line empty (no args)
             print("** class name missing **")
+
+    def do_count(self, line):
+        """ returns the number of objects in a given class """
+        if not line:
+            print("** class name missing **")
+        else:
+            # get objects in the class
+            objects = storage.all()
+            objs = self.get_class_objects(line, objects)
+            # print count if class exists
+            if objs != -1:
+                print("{}".format(len(objs) if len(objs) else 0))
 
 
 # run the script if executed as main
