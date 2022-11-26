@@ -206,8 +206,8 @@ class HBNBCommand(cmd.Cmd):
             if argv[0] in CLASSES:
                 print(class_objects)
         # Class name not a valid class
-        else:
-            print("** class doesn't exist **")
+            else:
+                print("** class doesn't exist **")
 
     def do_update(self, line):
         """Updates an instance based on the class and id by adding attribute
