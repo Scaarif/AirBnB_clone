@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         pass  # do nothing
 
     # override cmd.precmd - re-write line if in the form <class>.cmd
-    def precmd(self, line):
+    '''def precmd(self, line):
         # for cls in self.classes:
         if '.' in line:
             # if line.startswith(cls):
@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
                 cmd_strs[1] = cmd_strs[1].strip('()')
             line = ' '.join(reversed(cmd_strs))
             # print(line)
-        return cmd.Cmd.precmd(self, line)
+        return cmd.Cmd.precmd(self, line)'''
 
     # ========= helper methods ===========
 
