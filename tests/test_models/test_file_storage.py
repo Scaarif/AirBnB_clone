@@ -8,6 +8,7 @@ import unittest
 
 class TestFileStorage(unittest.TestCase):
     """ Tests the various attributes &/ methods of FileStorage class """
+
     def setUp(self):
         """ set up instance objects to use for the tests """
         self.store = FileStorage()

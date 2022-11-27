@@ -7,6 +7,7 @@ import unittest
 
 class TestUser(unittest.TestCase):
     """ Define User attributes and methods tests """
+
     def setUp(self):
         """ Instantiate User test objects """
         self.user = User()

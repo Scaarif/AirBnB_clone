@@ -7,6 +7,7 @@ import unittest
 
 class TestUser(unittest.TestCase):
     """ Define City attributes and methods tests """
+
     def setUp(self):
         """ Instantiate City test objects """
         self.city = City()
