@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
 
     # ========= helper methods ===========
 
-    @staticmethod
+    '''@staticmethod
     def get_value(args):
         """ returns a value from args """
         attr_value = args[3]
@@ -143,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
         # add last name: values pair
         attr_dict[name.strip("'")] = ' '.join(values)
         # print(attr_dict)
-        return attr_dict
+        return attr_dict'''
 
     # ========== end of helper functions ==============
 
@@ -167,7 +167,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print('** class name missing **')
 
-    def do_show(self, line):
+    '''def do_show(self, line):
         """ <show object_id> prints the string representation of
         an instance based on class name and id """
         # check that class name & id are provided along with command
@@ -348,7 +348,7 @@ class HBNBCommand(cmd.Cmd):
                         print("** value missing **")
         else:
             # attribute_name missing
-            print("** attribute name missing **")
+            print("** attribute name missing **")'''
 
 
 # run the script if executed as main
