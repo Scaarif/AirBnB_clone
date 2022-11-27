@@ -100,6 +100,8 @@ class HBNBCommand(cmd.Cmd):
             if value[0] == '"':
                 values = value.split('"')
                 attr_value = values[1]
+        else:
+            attr_value = attr_value.strip('"')
         return attr_value
 
     def get_class_objects(self, line, objects):
@@ -183,7 +185,8 @@ class HBNBCommand(cmd.Cmd):
                     # get the string objects
                     objects = storage.all()
                     # search for [this_id] object representation
-                    this_key = f'{args[0]}.{args[1]}'
+                    args[1] = args[1].strip('"')
+                    this_key = f"{args[0]}.{args[1]}"
                     for obj, str_rep in objects.items():
                         if obj == this_key:
                             # print this_obj (its str rep)
@@ -216,6 +219,7 @@ class HBNBCommand(cmd.Cmd):
                     # get the string objects (as reloaded)
                     objects = storage.all()
                     # search for [this_id] object representation
+                    args[1] = args[1].strip('"')
                     this_key = f'{args[0]}.{args[1]}'
                     for obj, str_rep in objects.items():
                         if obj == this_key:
@@ -246,15 +250,13 @@ class HBNBCommand(cmd.Cmd):
             if objs == -1:
                 pass  # class doesn't exist
             else:
-                if objs:
-                    print(objs)
+                print(objs)
         else:
             # print all instances (no filter)
             obj_list = []
             for obj, val in objects.items():
                 obj_list.append(str(val))
-            if obj_list:
-                print(obj_list)
+            print(obj_list)
 
     def do_update(self, line):
         """ <update class_name object_id attribute_name attribute_value>
@@ -276,15 +278,18 @@ class HBNBCommand(cmd.Cmd):
                 # class exists, check id is provided
                 if len(args) > 1:
                     objects = storage.all()
+                    args[1] = args[1].strip('"')
                     this_key = f'{args[0]}.{args[1]}'
                     for obj, str_rep in objects.items():
                         if obj == this_key:
                             # object exists: update or add attribute
                             # check if a dictionary of attributes' provided
                             if dict_args:
+                                # print("dictionary case")
                                 for k, v in dict_args.items():
                                     self.update_attribute(args, str_rep, k, v)
                             else:
+                                # print("normal case")
                                 # just a single attribute-value pair to update
                                 self.update_attribute(args, str_rep)
                             break
@@ -336,6 +341,7 @@ class HBNBCommand(cmd.Cmd):
                     break  # from for loop
                 else:
                     # attribute doesn't exist, add it
+                    # print("entirely new attribute")
                     if len(args) > 3:
                         # extend object dict_rep
                         attr_value = self.get_value(args)
@@ -348,6 +354,7 @@ class HBNBCommand(cmd.Cmd):
                         str_rep.save()
                     else:
                         print("** value missing **")
+                    break
         else:
             # attribute_name missing
             print("** attribute name missing **")

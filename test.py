@@ -1,5 +1,6 @@
 actual_attrs = []
-attrs = ['"first_name":', '"Rahab', '"age":', '26', '"nick_name":', '"Scaarif Ngache"']
+attrs = ['"first_name":', '"Rahab', '"age":',
+         '26', '"nick_name":', '"Scaarif Ngache"']
 for idx, attr in enumerate(attrs):
     print(attr)
     if idx % 2 == 0:
