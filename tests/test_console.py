@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Defines tests for the HBNBCommand class as defined in the console module """
+""" Defines tests for the HBNBCommand class as defined in the console
+module """
 from console import HBNBCommand
 import unittest
 
@@ -9,7 +10,7 @@ class TestHBNBCommand(unittest.TestCase):
     def setUp(self):
         """ set up class instances for use in tests """
         self.command = HBNBCommand()
-    
+
     # test that the class inherits from cmd.Cmd
     # test that the custom promt is (hbtn)
     # test that quit and EOF are imlemented and work
@@ -19,10 +20,11 @@ class TestHBNBCommand(unittest.TestCase):
     # create -> creates a new instance of <class>
     # show -> prints the str rep of an object <id> of class <class>
     # destroy -> deletes an instance (so show returns no instance found after)
-    # all -> displays (str reps of) all objects currently in created (loads from file.json)
-    # update -> updates (attribute's value) if in existence /adds a new attribute (name & value) to an object
-    # test that error handling is correctly implemented for the different methods including:
+    # all -> displays (str reps of) all objects currently in created
+    # (loads from file.json)
+    # update -> updates (attribute's value) if in existence /adds a new
+    # attribute (name & value) to an object
+    # test that error handling is correctly implemented for the different
+    # methods including:
     # value type, class or id missing, unimplemented classes, etc
-    # =================== WRITE THE TESTS PER METHOD (i.e. a class per method) =========================
-
-
+    # =================== WRITE THE TESTS PER METHOD (i.e. a class per method)
