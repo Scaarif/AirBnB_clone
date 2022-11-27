@@ -37,7 +37,7 @@ class FileStorage:
         with open(filename, mode='w', encoding='utf-8') as f:
             for key, obj in (FileStorage.__objects).items():
                 objs_dict[key] = obj.to_dict()
-            json.dump(objs_dict, f)
+            json.dump(objs_dict, f, indent=4)
 
     def reload(self):
         """ deserializes the JSON file to __objects (only if

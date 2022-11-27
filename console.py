@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             cls = cmd_strs[0]
             # print('command: ', command)
             # print('args: ', args)
-            if len(args[1]):
+            if args and len(args) > 1 and len(args[1]):
                 if len(args[1].split(',')) == 1:
                     # the likes of User.show("id")
                     args = (args[1].strip(')')).strip('"')
