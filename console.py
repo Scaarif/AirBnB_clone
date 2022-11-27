@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         """ quit help """
-        print('syntax: quit\n--terminates the application')
+        print('Quit command to exit the program\n')
 
     def do_EOF(self, line):
         """ exits the program: <Ctrl + D> call method implementation """
