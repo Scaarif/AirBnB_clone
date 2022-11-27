@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
         pass  # do nothing
 
     # override cmd.precmd - re-write line if in the form <class>.cmd
-    '''def precmd(self, line):
+    def precmd(self, line):
         # for cls in self.classes:
         if '.' in line:
             # if line.startswith(cls):
@@ -86,11 +86,11 @@ class HBNBCommand(cmd.Cmd):
                 cmd_strs[1] = cmd_strs[1].strip('()')
             line = ' '.join(reversed(cmd_strs))
             # print(line)
-        return cmd.Cmd.precmd(self, line)'''
+        return cmd.Cmd.precmd(self, line)
 
     # ========= helper methods ===========
 
-    '''@staticmethod
+    @staticmethod
     def get_value(args):
         """ returns a value from args """
         attr_value = args[3]
@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             if value[0] == '"':
                 values = value.split('"')
                 attr_value = values[1]
-        return attr_value'''
+        return attr_value
 
     def get_class_objects(self, line, objects):
         """ returns a list of the objects in <line> class """
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return (-1)
 
-    '''@staticmethod
+    @staticmethod
     def handle_attributes_dict(attrs):
         """ rebuilds arguments from a dictionary """
         # attrs is a str of attr_names and corresponding values
@@ -143,13 +143,13 @@ class HBNBCommand(cmd.Cmd):
         # add last name: values pair
         attr_dict[name.strip("'")] = ' '.join(values)
         # print(attr_dict)
-        return attr_dict'''
+        return attr_dict
 
     # ========== end of helper functions ==============
 
     # ++++ custom console commands ++++ #
 
-    '''def do_create(self, line):
+    def do_create(self, line):
         """ Create command to create a new instance """
         # check that class name is included in command
         if line:
@@ -165,9 +165,9 @@ class HBNBCommand(cmd.Cmd):
                 # provided_class doesn't exist
                 print("** class doesn't exist **")
         else:
-            print('** class name missing **')'''
+            print('** class name missing **')
 
-    '''def do_show(self, line):
+    def do_show(self, line):
         """ <show object_id> prints the string representation of
         an instance based on class name and id """
         # check that class name & id are provided along with command
@@ -232,7 +232,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
         else:
             # line empty (no args)
-            print("** class name missing **")'''
+            print("** class name missing **")
 
     def do_all(self, line):
         """ <all> or <all class_name> prints all string representation
@@ -246,15 +246,17 @@ class HBNBCommand(cmd.Cmd):
             if objs == -1:
                 pass  # class doesn't exist
             else:
-                print(objs)
+                if objs:
+                    print(objs)
         else:
             # print all instances (no filter)
             obj_list = []
             for obj, val in objects.items():
                 obj_list.append(str(val))
-            print(obj_list)
+            if obj_list:
+                print(obj_list)
 
-    '''def do_update(self, line):
+    def do_update(self, line):
         """ <update class_name object_id attribute_name attribute_value>
         updates the instance [class_name.object_id]'s attribute
         [attribute_name] to [attribute_value] if [attribute_name]
@@ -348,7 +350,7 @@ class HBNBCommand(cmd.Cmd):
                         print("** value missing **")
         else:
             # attribute_name missing
-            print("** attribute name missing **")'''
+            print("** attribute name missing **")
 
 
 # run the script if executed as main
