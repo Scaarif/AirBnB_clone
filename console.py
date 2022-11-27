@@ -149,7 +149,7 @@ class HBNBCommand(cmd.Cmd):
 
     # ++++ custom console commands ++++ #
 
-    def do_create(self, line):
+    '''def do_create(self, line):
         """ Create command to create a new instance """
         # check that class name is included in command
         if line:
@@ -165,7 +165,7 @@ class HBNBCommand(cmd.Cmd):
                 # provided_class doesn't exist
                 print("** class doesn't exist **")
         else:
-            print('** class name missing **')
+            print('** class name missing **')'''
 
     '''def do_show(self, line):
         """ <show object_id> prints the string representation of
