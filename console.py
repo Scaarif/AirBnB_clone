@@ -32,20 +32,13 @@ class HBNBCommand(cmd.Cmd):
                         'Review']
 
     def do_quit(self, line):
-        """ Quit command to exit the program\n """
+        """ Quit command to exit the program """
         sys.exit(1)  # success
 
-    def help_quit(self):
-        """ quit help """
-        print('Quit command to exit the program\n')
-
     def do_EOF(self, line):
-        """ exits the program: <Ctrl + D> call method implementation """
+        """ <Ctrl + D> to exit the program """
         print(),  # to exit properly(with a new line)
         return True  # to the cmdloop's stop flag
-
-    def help_EOF(self):
-        print('Ctrl + D terminates the application')
 
     # override cmd.emptyline - re-executes last cmd if emptyline
     def emptyline(self):
