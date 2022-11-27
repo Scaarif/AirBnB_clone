@@ -354,5 +354,4 @@ class HBNBCommand(cmd.Cmd):
 
 # run the script if executed as main
 if __name__ == '__main__':
-    # instantiate class and run infinitely
     HBNBCommand().cmdloop()
