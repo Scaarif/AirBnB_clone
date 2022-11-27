@@ -360,6 +360,5 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
 
 
-# run the script if executed as main
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
