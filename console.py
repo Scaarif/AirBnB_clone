@@ -100,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
             if value[0] == '"':
                 values = value.split('"')
                 attr_value = values[1]
-        return attr_value
+        return attr_value'''
 
     def get_class_objects(self, line, objects):
         """ returns a list of the objects in <line> class """
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return (-1)
 
-    @staticmethod
+    '''@staticmethod
     def handle_attributes_dict(attrs):
         """ rebuilds arguments from a dictionary """
         # attrs is a str of attr_names and corresponding values
@@ -232,7 +232,7 @@ class HBNBCommand(cmd.Cmd):
                     print("** instance id missing **")
         else:
             # line empty (no args)
-            print("** class name missing **")
+            print("** class name missing **")'''
 
     def do_all(self, line):
         """ <all> or <all class_name> prints all string representation
@@ -254,7 +254,7 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(val))
             print(obj_list)
 
-    def do_update(self, line):
+    '''def do_update(self, line):
         """ <update class_name object_id attribute_name attribute_value>
         updates the instance [class_name.object_id]'s attribute
         [attribute_name] to [attribute_value] if [attribute_name]
