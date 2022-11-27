@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     """ Defines a line-oriented command processor
     (a command-line interface) that extends the cmd module """
     # assign a custom prompt
-    prompt = '(hbtn) '
+    prompt = '(hbnb) '
 
     # initialize object
     def __init__(self):
