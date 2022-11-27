@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""
-Creates a unique FileStorage instance
-"""
+""" Initialize models package """
 from models.engine.file_storage import FileStorage
 
 
+# create a variable storage, an instance of FileStorage
 storage = FileStorage()
-storage.reload()
+# call reload() method on the variable (storage)
+storage.reload()  # deserializes the JSON file to __objects
+# __objects is a dictionary of objects (instances)

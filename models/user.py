@@ -1,15 +1,17 @@
 #!/usr/bin/python3
-"""
-Module for class User
-"""
-
+""" Defines the class User, that inherits from class BaseModel """
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Inherits from BaseModel
-    """
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+    """ Defines the attributes/ methods of a User instance """
+    # define (public) class attributes
+    email = ''
+    password = ''
+    first_name = ''
+    last_name = ''
+
+    def __init__(self, *args, **kwargs):
+        """ Initialize user objects """
+        # initialize super class
+        BaseModel.__init__(self, *args, **kwargs)

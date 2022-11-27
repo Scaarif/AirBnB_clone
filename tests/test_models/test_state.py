@@ -7,7 +7,6 @@ import unittest
 
 class TestState(unittest.TestCase):
     """ Define State attributes and methods tests """
-
     def setUp(self):
         """ Instantiate User test objects """
         self.state = State()
