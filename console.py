@@ -150,8 +150,7 @@ class HBNBCommand(cmd.Cmd):
     # ++++ custom console commands ++++ #
 
     def do_create(self, line):
-        """ <create class_name> creates a new instance of BaseModel, saves
-        it(to JSON file) & prints the id (instance's) """
+        """ Create command to create a new instance """
         # check that class name is included in command
         if line:
             # check if class is valid
