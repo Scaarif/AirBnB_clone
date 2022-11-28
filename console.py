@@ -11,6 +11,13 @@ from models.amenity import Amenity
 from models.review import Review
 from models import storage
 
+classes = ['BaseModel',
+            'User',
+            'State',
+            'City',
+            'Place',
+            'Amenity',
+            'Review']
 
 class HBNBCommand(cmd.Cmd):
     """ Defines a line-oriented command processor
@@ -19,17 +26,6 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     # initialize object
-    def __init__(self):
-        """ Initializes class objects """
-        # initialize super class (is this necessary)? No!
-        cmd.Cmd.__init__(self)
-        self.classes = ['BaseModel',
-                        'User',
-                        'State',
-                        'City',
-                        'Place',
-                        'Amenity',
-                        'Review']
 
     def do_quit(self, line):
         """ Quit command to exit the program """
@@ -111,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
     def get_class_objects(self, line, objects):
         """ returns a list of the objects in <line> class """
         obj_list = []
-        for cls in self.classes:
+        for cls in classes:
             if line == cls:
                 for obj, val in objects.items():
                     cls_name = (obj.split('.'))[0]
@@ -160,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
         # check that class name is included in command
         if line:
             # check if class is valid
-            for class_ in self.classes:
+            for class_ in classes:
                 if class_ in line:
                     # new = method()
                     new = eval(class_)()
@@ -180,7 +176,7 @@ class HBNBCommand(cmd.Cmd):
         if line:
             args = line.split()
             # check that class exists
-            if args[0] and args[0] not in self.classes:
+            if args[0] and args[0] not in classes:
                 print("** class doesn't exist **")
             else:
                 # class exists, check id is provided
@@ -213,7 +209,7 @@ class HBNBCommand(cmd.Cmd):
         if line:
             args = line.split()
             # check that class exists
-            if args[0] and args[0] not in self.classes:
+            if args[0] and args[0] not in classes:
                 # if args[0] and args[0] != 'BaseModel':
                 print("** class doesn't exist **")
             else:
@@ -276,7 +272,7 @@ class HBNBCommand(cmd.Cmd):
                 # pass to the function, the dictionary part
                 dict_args = self.handle_attributes_dict((line.split('{'))[1])
             # check that class exists
-            if args[0] and args[0] not in self.classes:
+            if args[0] and args[0] not in classes:
                 print("** class doesn't exist **")
             else:
                 # class exists, check id is provided
