@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             cls = cmd_strs[0]
             # print('command: ', command)
             # print('args: ', args)
-            if len(args[1]):
+            if args and len(args) > 1 and len(args[1]):
                 if len(args[1].split(',')) == 1:
                     # the likes of User.show("id")
                     args = (args[1].strip(')')).strip('"')
@@ -326,14 +326,14 @@ class HBNBCommand(cmd.Cmd):
         if len(args) > 2:
             # check if attribute already exists
             for k, val in (str_rep.to_dict()).items():
-                if k == args[2]:
+                if k == args[2].strip('"'):
                     # attribute already exists
                     # check if attr_value provided
                     if len(args) > 3:
                         # attr_value provided, cast+update
                         attr_val = self.get_value(args)
                         attr_val = type(val)(attr_val)
-                        setattr(str_rep, args[2], attr_val)
+                        setattr(str_rep, k, attr_val)
                         # reserialize objects into file
                         str_rep.save()
                     else:
@@ -349,7 +349,7 @@ class HBNBCommand(cmd.Cmd):
                             attr_value = int(attr_value)
                         elif attr_value[0].isnumeric() and '.' in attr_value:
                             attr_value = float(attr_value)
-                        setattr(str_rep, args[2], attr_value)
+                        setattr(str_rep, args[2].strip('"\''), attr_value)
                         # reserialize __objects into file
                         str_rep.save()
                     else:
@@ -360,6 +360,5 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
 
 
-# run the script if executed as main
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
