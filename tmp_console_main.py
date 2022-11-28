@@ -12,12 +12,13 @@ from models.review import Review
 from models import storage
 
 classes = ['BaseModel',
-            'User',
-            'State',
-            'City',
-            'Place',
-            'Amenity',
-            'Review']
+           'User',
+           'State',
+           'City',
+           'Place',
+           'Amenity',
+           'Review']
+
 
 class HBNBCommand(cmd.Cmd):
     """ Defines a line-oriented command processor
