@@ -6,7 +6,6 @@ import re
 import cmd
 import sys
 import models
-import argparse
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -28,10 +27,6 @@ CLASSES = [
     "Review"
 ]
 
-# Gets the input string that will be passed to parser()
-parser = argparse.ArgumentParser()
-line = str(parser.parse_args())
-
 # ============== Helper Functions ===============
 
 
@@ -43,8 +38,57 @@ def parser(line):
         line(str): String passed to cmd
     """
 
+    # Regex gets all sub strings within quotation marks and
+    # stores it an av_quoted array in order to treat is as a unit
+    av_quoted = re.findall(r'["\']([^"\']+)["\']', line)
+
+    # Each quoted sub string is replaced in line with
+    # a place holder "quoted_str"
+    line = re.sub(r'["\']([^"\']+)["\']', "quoted_str", line)
+
     # The regex returns a list of all space-demarcated substrings
-    return re.findall(r"(\b[^\s]+\b)", line)
+    argv = re.findall(r"(\b[^\s]+\b)", line)
+
+    quoted_str_index_counter = 0
+    # The placeholder "quoted_str" is replaced with the original
+    # quoted string
+    for idx, arg in enumerate(argv):
+        if arg == "quoted_str":
+            argv[idx] = av_quoted[quoted_str_index_counter]
+            quoted_str_index_counter += 1
+    return argv
+
+# This version of parser is used only in precmd
+# It returns argv in which the quoted strings still have their quotes
+
+
+def parser2(line):
+    """Parses arguments parsed to our HBNBCommands
+    Returns an array of strings
+
+    Args:
+        line(str): String passed to cmd
+    """
+
+    # Regex gets all sub strings within quotation marks and
+    # stores it an av_quoted array in order to treat is as a unit
+    av_quoted = re.findall(r'(["\'][^"\']+["\'])', line)
+
+    # Each quoted sub string is replaced in line with
+    # a place holder "quoted_str"
+    line = re.sub(r'(["\'][^"\']+["\'])', "quoted_str", line)
+
+    # The regex returns a list of all space-demarcated substrings
+    argv = re.findall(r"(\b[^\s]+\b)", line)
+
+    quoted_str_index_counter = 0
+    # The placeholder "quoted_str" is replaced with the original
+    # quoted string
+    for idx, arg in enumerate(argv):
+        if arg == "quoted_str":
+            argv[idx] = av_quoted[quoted_str_index_counter]
+            quoted_str_index_counter += 1
+    return argv
 
 
 def verify_id(id, argv):
@@ -82,11 +126,11 @@ class HBNBCommand(cmd.Cmd):
             # Regex returns the command (comd) without the ending ()
             comd = re.findall(r"^[a-z]+", argv[1])[0]
             if comd in cmd_list:
-                # Gets the id passed to commands requiring id
-                id = re.findall(r"\((.*)\)", argv[1])[0]
+                # Gets the arg passed to bracket
+                arg_in_bracket = re.findall(r"\((.*)\)", argv[1])[0]
                 if comd == "update":
                     # av is a list of commands passed to update method
-                    av = id.split(' ')
+                    av = parser2(arg_in_bracket)
                     if len(av) == 3:
                         # Checks value parameter is passed as a dict
                         if type(av[2]) is dict:
@@ -101,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                         line = f"{comd} {argv[0]} {av[0]}"
                 else:
                     # Reconstructs the line to fit cmd class pattern
-                    line = f"{comd} {argv[0]} {id}"
+                    line = f"{comd} {argv[0]} {arg_in_bracket}"
             else:
                 line = f"{comd} {argv[0]}"
 
@@ -131,7 +175,6 @@ class HBNBCommand(cmd.Cmd):
         # argv is a vector containing parsed input string
         # Input string involves only args passed to function
         argv = parser(line)
-
         if len(argv) == 0:
             print("** class name missing **")
         elif argv[0] not in CLASSES:
@@ -187,7 +230,6 @@ class HBNBCommand(cmd.Cmd):
         """
 
         argv = parser(line)
-
         all_dicts = storage.all()
         all_objects = []
         class_objects = []  # contains obj when class name is called
