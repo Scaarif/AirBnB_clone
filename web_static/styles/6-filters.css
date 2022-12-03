@@ -73,9 +73,9 @@
 .filters .amenities:hover .popover {
     display: block;
 }
-.filters ul li {
-    padding-left: 20px;
-    padding-top: 10px;
+.filters .popover ul li {
+    list-style: none;
+    padding: 0;
 }
 .filters ul li:last-child {
     padding-bottom: 10px;

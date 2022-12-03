@@ -1,10 +1,20 @@
 .places {
     width: 100%;
-    /* border: 1px solid green; */
+    display: flex;
+    flex-direction: column;
 }
 .places h1, h2 {
-    /* text-align: start; */
     font-size: 30px;
+}
+.places h1 {
+    margin-bottom: 0;
+}
+.places .articles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    /* border: 1px solid green; */
 }
 .places article {
     width: 390px;
@@ -14,16 +24,20 @@
     border-radius: 4px;
 
     position: relative;
-    min-height: max-content; /* I want all articles to be of the same height! Doesn't seem work */
 }
 .places article h2 {
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    /* color: green; */
 }
-.places div {
+.places .price_by_night,
+.places .information div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    /* border: 1px solid red; */
 }
 .places article .price_by_night {
     color: #FF5A5F;
@@ -36,11 +50,12 @@
 
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 10px;
 }
 article .information {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 80px;
     border-block: 1px solid #DDDDDD;
 }
@@ -75,4 +90,8 @@ article .user {
 }
 article .user p {
     margin-bottom: 0;
+}
+article .description {
+    display: flex;
+    flex-wrap: wrap;
 }
