@@ -80,3 +80,31 @@
 .filters ul li:last-child {
     padding-bottom: 10px;
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .filters button {
+        margin-right: .5rem;
+    }
+    .filters .amenities .popover {
+        left: -45%;
+    }
+    .filters .locations .popover ul {
+        padding: 1rem;
+        padding-block: 0;
+    }
+}
+@media screen and (max-width: 425px) {
+    .filters .locations .popover {
+        top: 100%;
+        width: 95%;
+        padding: 1rem;
+    }
+    .filters .locations .popover ul {
+        padding: 1rem;
+    }
+    .filters .amenities .popover {
+        left: -32%;
+        top: 100%;
+    }
+}

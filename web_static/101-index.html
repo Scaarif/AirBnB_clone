@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirBnB Clone</title>
+    <link rel="icon" href="/https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/icon.png">
+    <link rel="stylesheet" href="./styles/4-common.css">
+    <link rel="stylesheet" href="./styles/3-header.css">
+    <link rel="stylesheet" href="./styles/3-footer.css">
+    <link rel="stylesheet" href="./styles/6-filters.css">
+    <link rel="stylesheet" href="./styles/101-places.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span></span>
+        </div>
+    </header>
+    <!-- <div class="under-logo"></div> -->
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                <h3>States</h3>
+                <h4>California, Arizona...</h4>
+                <ul class="popover">
+                    <h2>Arizona:</h2>
+                    <li>Page</li>
+                    <li>Page2</li>
+                    <h2>California:</h2>
+                    <li>San Fransisco</li>
+                    <li>Los Altos</li>
+                </ul>
+                <ul class="popover">
+                    <li>
+                        <h2>Arizona:</h2>
+                        <ul>
+                            <li>Page</li>
+                            <li>Page2</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>California:</h2>
+                        <ul>
+                            <li>San Fransisco</li>
+                            <li>Los Altos</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>Internet, Kitchen...</h4>
+                <ul class="popover">
+                    <li>Internet</li>
+                    <li>Tv</li>
+                    <li>Kitchen</li>
+                    <li>Iron</li>
+                </ul>
+            </div>
+            <button>Search</button>
+        </section>
+        <section class="places">
+            <h1>Places</h1>
+            <div class="articles">
+                <article>
+                    <h2>My home</h2>
+                    <div class="price_by_night">$80</div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="number_rooms">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="number_bathrooms">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <p><b>Owner:</b> John Lenon</p>
+                    </div>
+                    <div class="description">
+                        <p>This is a lovely 1 bedroom and 1 bathroom apartment that can accommodate 2 people.
+                            It is located at the center of Shanghai next to subway line 1, 1 stop to People Square,
+                            2 stops to Bund and 3 stops to Jingai Temple.</p>
+                    </div>
+                    <div class="amenities">
+                        <h2>Amenities</h2>
+                        <ul>
+                            <li><p><span></span> TV</p></li>
+                            <li><p><span></span> Wifi</p></li>
+                            <li><p><span></span> Pet Friendly</p></li>
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h2>2 Reviews</h2>
+                        <ul>
+                            <li>
+                                <h3>From Bob Dylan the 27th October 2022</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 5 stars!</p>
+                            </li>
+                            <li>
+                                <h3>From Connor the 4th December 2022</h3>
+                                <p>Rushi is an epic host period. 5 stars!</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <h2>Tiny House</h2>
+                    <div class="price_by_night">$65</div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <span></span>
+                            <span>2 Guests</span>
+                        </div>
+                        <div class="number_rooms">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="number_bathrooms">
+                            <span></span>
+                            <span>1 Bathroom</span>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <p><b>Owner:</b> Adrienne</p>
+                    </div>
+                    <div class="description">
+                        <p>Our place is a private, affordable stand-alone guest house centrally located just minutes to French Quarters, downtown, the Fair Grounds (Jazz Fest) and City Park.The guest house is a quaint, 400 square ft. with a full bath, mini kitchen and living room. The extra high ceilings make the home feel more spacious. The sofa converts to a bed also. We have a hand made counter area that adds character to the room and a great porch/deck to relax on and have a glass of Mariot.</p>
+                    </div>
+                    <div class="amenities">
+                        <h2>Amenities</h2>
+                        <ul>
+                            <li><p><span></span> TV</p></li>
+                            <li><p><span></span> Wifi</p></li>
+                            <!-- <li><p><span></span> Pet Friendly</p></li> -->
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h2>2 Reviews</h2>
+                        <ul>
+                            <li>
+                                <h3>From Kamau Karanja the 27th November 2022</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 5 stars!</p>
+                            </li>
+                            <li>
+                                <h3>From Dave the 2nd Decemeber 2022</h3>
+                                <p>Rushi is an epic host period. 5 stars!</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <h2>A Suite</h2>
+                    <div class="price_by_night">$190</div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="number_rooms">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                        <div class="number_bathrooms">
+                            <span></span>
+                            <span>1 Bedroom</span>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <p><b>Owner:</b> Ogolla Ogolla</p>
+                    </div>
+                    <div class="description">
+                        <p>This is a lovely 1 bedroom and 1 bathroom apartment that can accommodate 2 people.
+                            It is located at the center of Shanghai next to subway line 1, 1 stop to People Square,
+                            2 stops to Bund and 3 stops to Jingai Temple.</p>
+                    </div>
+                    <div class="amenities">
+                        <h2>Amenities</h2>
+                        <ul>
+                            <li><p><span></span> TV</p></li>
+                            <li><p><span></span> Wifi</p></li>
+                            <li><p><span></span> Pet Friendly</p></li>
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h2>1 Review</h2>
+                        <ul>
+                            <li>
+                                <h3>From Oconnor the 27th September 2022</h3>
+                                <p>Fantastic place. It was clean, Ogolla was great (even though we didn't meet in person) and everything went super smooth. Location is also great if you like running and something a bit more quiet. I would suggest a car or take into consideration
+                                    that you might have to Uber into the city from the location. Overall, would recommend the place anytime!
+                                </p>
+                            </li>
+                            <!-- <li>
+                                <h3>From Connor the 4th January 2017</h3>
+                                <p>Rushi is an epic host period. 5 stars!</p>
+                            </li> -->
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+    <footer>
+        Best School
+    </footer>
+</body>
+</html>
